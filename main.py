@@ -44,17 +44,44 @@ def task3(A: tuple, B: tuple, C: tuple) -> str:
     return "Тупой"
 
 
-def task4():
+def task4(first_point: tuple, second_point: tuple, third_point: tuple) -> tuple:
+    """Ax + By + Cz + D = 0"""
+    A = (second_point[1]-first_point[1])*(third_point[2]-first_point[2]) -\
+          (third_point[1]-first_point[1])*(second_point[2]-first_point[2])
+    B = (third_point[0]-first_point[0])*(second_point[2]-first_point[2]) -\
+          (second_point[0]-first_point[0])*(third_point[2]-first_point[2])
+    C = (second_point[0]-first_point[0])*(third_point[1]-first_point[1]) -\
+          (third_point[0]-first_point[0])*(second_point[1]-first_point[1])
+    D = -first_point[0] * A + (-first_point[1] * B) + (-first_point[2] * C)
 
-    return
+    A_str = f"{A}x"
+    if B < 0:
+        B_str = f"- {abs(B)}y"
+    else:
+        B_str = f"+ {B}y"
+    if C < 0:
+        C_str = f"- {abs(C)}z"
+    else:
+        C_str = f"+ {C}z"
+    if D < 0:
+        D_str = f"- {abs(D)}"
+    else:
+        D_str = f"+ {D}"
+
+    print(f"{A_str} {B_str} {C_str} {D_str} = 0")
+    return A, B, C, D
 
 
 def main():
     first_point = (0, 2)
     second_point = (0, 0)
     third_point = (10000, 0)
+
+    P1, P2, P3 = (3,3,1), (2,5,1), (3,1,2)
+
     print(task2(first_point, second_point, third_point))
     print(task3(first_point, second_point, third_point))
+    print(task4(P1, P2, P3))
     return
 
 
