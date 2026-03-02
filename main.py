@@ -2,10 +2,12 @@ import math
 
 def task1(first_point: tuple, second_point: tuple) -> tuple:
     """y = kx + b"""
+    if first_point == second_point:
+        raise ValueError("Точки должны быть разными")
     if second_point[0] - first_point[0] == 0:
         print(f"x = {first_point[0]}")
         k = math.inf
-        b = 0
+        b = first_point[0]
         return k, b
     elif second_point[1] - first_point[1] == 0:
         print(f"y = {first_point[1]}")
@@ -32,7 +34,6 @@ def task2(first_point: tuple, second_point: tuple, third_point: tuple) -> bool:
             return True
     return False
 
-
 def task3(A: tuple, B: tuple, C: tuple) -> str:
     BA = (A[0] - B[0], A[1] - B[1])
     BC = (C[0] - B[0], C[1] - B[1])
@@ -46,13 +47,22 @@ def task3(A: tuple, B: tuple, C: tuple) -> str:
 
 def task4(first_point: tuple, second_point: tuple, third_point: tuple) -> tuple:
     """Ax + By + Cz + D = 0"""
-    A = (second_point[1]-first_point[1])*(third_point[2]-first_point[2]) -\
-          (third_point[1]-first_point[1])*(second_point[2]-first_point[2])
-    B = (third_point[0]-first_point[0])*(second_point[2]-first_point[2]) -\
-          (second_point[0]-first_point[0])*(third_point[2]-first_point[2])
-    C = (second_point[0]-first_point[0])*(third_point[1]-first_point[1]) -\
-          (third_point[0]-first_point[0])*(second_point[1]-first_point[1])
-    D = -first_point[0] * A + (-first_point[1] * B) + (-first_point[2] * C)
+    AB = (second_point[0] - first_point[0],
+          second_point[1] - first_point[1],
+          second_point[2] - first_point[2])
+    AC = (third_point[0] - first_point[0],
+          third_point[1] - first_point[1],
+          third_point[2] - first_point[2])
+
+    cross = (AB[1] * AC[2] - AB[2] * AC[1],
+             AB[2] * AC[0] - AB[0] * AC[2],
+             AB[0] * AC[1] - AB[1] * AC[0])
+
+    if all(abs(coord) < 1e-9 for coord in cross):
+        raise ValueError("Точки не должны лежать на одной прямой")
+
+    A, B, C = cross
+    D = - (A * first_point[0] + B * first_point[1] + C * first_point[2])
 
     A_str = f"{A}x"
     if B < 0:
@@ -71,19 +81,9 @@ def task4(first_point: tuple, second_point: tuple, third_point: tuple) -> tuple:
     print(f"{A_str} {B_str} {C_str} {D_str} = 0")
     return A, B, C, D
 
-
 def main():
-    first_point = (0, 2)
-    second_point = (0, 0)
-    third_point = (10000, 0)
-
-    P1, P2, P3 = (3,3,1), (2,5,1), (3,1,2)
-
-    print(task2(first_point, second_point, third_point))
-    print(task3(first_point, second_point, third_point))
-    print(task4(P1, P2, P3))
+    task4((0, 0, 0), (0, 1, 0), (0, 0, 1))
     return
-
 
 if __name__ == '__main__':
     main()
