@@ -1,7 +1,7 @@
 from calculations import task1, task2, task3, task4
 import matplotlib.pyplot as plt
-import matplotlib.backend_bases as bb
 import numpy as np
+
 
 def task1_plt(first_point: tuple, second_point: tuple):
     """y = kx + b"""
