@@ -3,16 +3,15 @@ import matplotlib.pyplot as plt
 from calculations import *
 
 pts = star_points(center=(0, 0), outer_radius=5, inner_radius=2)
+square_pts = bounding_square(pts)
 
-R = rotation_matrix(np.pi/10)
-pts_rot = transform(pts, R)
-
-Rot = rotation_point_matrix(1, 1, np.pi)
-pts_rot1 = transform(pts_rot, Rot)
+R = rotation_matrix(np.pi/2)
+pts = transform(pts, R)
+square_pts = transform(square_pts, R)
 
 plt.figure(figsize=(8, 8))
-plt.plot(pts_rot[:,0], pts_rot[:,1], color='red')
-plt.plot(pts_rot1[:,0], pts_rot1[:,1], color='green')
+plt.plot(pts[:,0], pts[:,1], color='red')
+plt.plot(square_pts[:,0], square_pts[:,1], 'b-')
 plt.legend()
 plt.axis('equal')
 plt.grid(True)
