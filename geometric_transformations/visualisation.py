@@ -10,7 +10,7 @@ sq_original = bounding_square(pts_original)
 pts_original = transform(pts_original, rotation_matrix(np.pi/2))
 sq_original = transform(sq_original, rotation_matrix(np.pi/2))
 
-fig, ax = plt.subplots(figsize=(8, 8))
+fig, ax = plt.subplots(figsize=(15,10))
 plt.subplots_adjust(left=0.1, bottom=0.35)
 
 ax.set_xlim(-15, 15)
@@ -90,7 +90,7 @@ s_transx.on_changed(update)
 s_transy.on_changed(update)
 
 textbox_width = 0.1
-textbox_height = 0.04
+textbox_height = 0.02
 textbox_x_start = 0.82
 textbox_y = slider_y_start - 0.01
 

@@ -16,7 +16,7 @@ def update(frame):
     ax.set_xlim(-2.5, 2.5)
     ax.set_ylim(-2.5, 2.5)
     ax.grid(True, linestyle='--', alpha=0.4)
-    s = 1 + 0.4 * np.sin(frame / 2)
+    s = 1 + 0.4 * np.sin(frame / 100)
     M = scaling_matrix(s, s)
     new_coords = M @ coords
     X_new = new_coords[0].reshape(X.shape)
@@ -26,5 +26,5 @@ def update(frame):
     ax.set_title(f"{s:.2f}")
     return cont,
 
-ani = animation.FuncAnimation(fig, update, frames=60, interval=50, blit=False)
+ani = animation.FuncAnimation(fig, update, frames=60, interval=10, blit=False)
 plt.show()
