@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MultipleLocator
 
 def draw_line(xs: tuple[int, int], ys: tuple[int, int], plot: plt):
     plot.plot(xs, ys)
@@ -25,4 +26,9 @@ def bresenham_line(first_point: tuple[int, int], second_point: tuple[int, int]) 
         if err2 < dx:
             err += dx
             y += sigy
+
+    ax = plt.gca()
+    ax.xaxis.set_major_locator(MultipleLocator(1))
+    ax.yaxis.set_major_locator(MultipleLocator(1))
+    plt.grid(True, linestyle='--', alpha=0.5)
     return plt
