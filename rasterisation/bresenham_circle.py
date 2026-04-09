@@ -32,12 +32,13 @@ def bresenham_circle(radius: int, center: tuple[int, int]) -> plt:
         plt.scatter(xc - y, yc - x, color='red')
 
         if d0 <= 0:
-            x += 1
             d0 = d0 + 4 * x + 6
+            x += 1
         else:
+            d0 = d0 + 4 * (x - y) + 10
             x += 1
             y -= 1
-            d0 = d0 + 4 * (x - y) + 10
+            
 
     ax = plt.gca()
     ax.xaxis.set_major_locator(MultipleLocator(1))
