@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 
 def main():
     
-    bresenham_circle(10, (0,0))
-    # bresenham_line((-5, -1),(-7,-7))
+    # bresenham_circle(10, (0,0))
+    bresenham_line((8, 7), (5, 4))
     plt.grid(True)
     plt.axis('equal')
     plt.show()

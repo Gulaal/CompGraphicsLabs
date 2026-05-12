@@ -31,6 +31,9 @@ def sutherland_cohen(line, xmin, xmax, ymin, ymax):
     while True:
         code_start = compute_code((x0_curr, y0_curr), xmin, xmax, ymin, ymax)
         code_end = compute_code((x1_curr, y1_curr), xmin, xmax, ymin, ymax)
+
+        print(bin(code_start))
+        print(bin(code_end))
         
         if code_start == 0 and code_end == 0:
             return (x0_curr, y0_curr), (x1_curr, y1_curr), True
@@ -77,8 +80,6 @@ def sutherland_cohen(line, xmin, xmax, ymin, ymax):
             x0_curr, y0_curr = x, y
         else:
             x1_curr, y1_curr = x, y
-
-import matplotlib.pyplot as plt
 
 def draw(R, L, result, visible):
     fig, ax = plt.subplots(figsize=(8, 6))
