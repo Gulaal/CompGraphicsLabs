@@ -62,9 +62,6 @@ def demo_scanline_fill(polygon, et):
         ax.plot(xs, ys, color='black', linewidth=2, label='Контур многоугольника')
         ax.grid(True, linestyle='--')
         
-        ax.set_xticks(range(int(polygon['X'].min())-1, int(polygon['X'].max())+2))
-        ax.set_yticks(range(int(polygon['Y'].min())-1, int(polygon['Y'].max())+2))
-        
         ax.axhline(y=y, color='red', linewidth=1.5)
         
         current_step_x = []
