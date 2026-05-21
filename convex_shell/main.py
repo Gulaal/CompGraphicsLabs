@@ -58,10 +58,9 @@ def visualize_andrew(points_df):
             redraw(fig, ax, pts, lower, upper, p, "Удаление точки (правый поворот в верхней цепи)")
         upper.append(p)
         redraw(fig, ax, pts, lower, upper, p, "Добавление точки в верхнюю цепь")
-
     plt.ioff()
-    final_hull = lower[:-1] + upper[:-1]
-    final_hull.append(final_hull[0])
+    final_shell = lower[:-1] + upper[:-1]
+    final_shell.append(final_shell[0])
     
     ax.clear()
     ax.grid(True)
@@ -69,8 +68,8 @@ def visualize_andrew(points_df):
     xs, ys = zip(*pts)
     ax.scatter(xs, ys, color='black', s=80, zorder=2)
     
-    hx, hy = zip(*final_hull)
-    ax.plot(hx, hy, color='purple', linewidth=3, marker='o', label='Итоговая оболочка')
+    hx, hy = zip(*final_shell)
+    ax.plot(hx, hy, color='green', linewidth=3, marker='o', label='Итоговая оболочка')
     ax.legend()
     plt.show()
 
